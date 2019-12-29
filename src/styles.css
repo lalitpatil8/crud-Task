@@ -1,0 +1,16 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+
+table thead tr {
+    background: #0853a0 !important;
+}
+th{
+    color: #fff !important;
+}
+tbody tr:nth-child(even){
+    background: #f7f5f5;
+}
+td button{
+    margin: 0px 5px;
+}

@@ -1,0 +1,64 @@
+<div class="container employeeTableWrapper">
+  <div class="col-md-12">
+    <label>Filter: &nbsp;&nbsp;&nbsp;</label>
+      <mat-form-field>
+          <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+        </mat-form-field>
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8" style="width:100%">
+  
+  
+    <ng-container matColumnDef="ID">
+      <th mat-header-cell *matHeaderCellDef>ID</th>
+      <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+    </ng-container>
+  
+    
+    <ng-container matColumnDef="Name">
+      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    </ng-container>
+  
+    
+    <ng-container matColumnDef="Designation">
+      <th mat-header-cell *matHeaderCellDef> Designation</th>
+      <td mat-cell *matCellDef="let element"> {{element.designation}} </td>
+    </ng-container>
+  
+    
+    <ng-container matColumnDef="Salary">
+      <th mat-header-cell *matHeaderCellDef> Salary</th>
+      <td mat-cell *matCellDef="let element"> {{element.salary}} </td>
+    </ng-container>
+         <ng-container matColumnDef="options">
+          <th mat-header-cell *matHeaderCellDef>Action</th>
+          <td mat-cell *matCellDef="let element">
+            <button class="btn btn-warning" (click)="deleteRecord(element)">Delete</button>
+            <button class="btn btn-info" (click)="editRecord(element.id)">Edit</button>
+          </td>
+        </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  
+</div>
+<div class="blocker" *ngIf="isDeleteRecord"></div>
+<!-- Modal -->
+<div id="myModal" *ngIf="isDeleteRecord">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Delete</h4>
+          <button type="button" class="close" (click)="isDeleteRecord = false">&times;</button>
+        </div>
+        <div class="modal-body">
+          <p>are you sure want to Delete <b>{{currRecord}}</b></p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" (click)="isDeleteRecord = false">Cancel</button>
+          <button type="button" class="btn btn-danger" (click)="confirm(index)">Delete</button>
+        </div>
+      </div>
+  
+    </div>
+  </div>
